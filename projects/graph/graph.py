@@ -78,7 +78,6 @@ class Graph:
                 for neighbor in neighbors:
                     s.push(neighbor)
 
-
     def dft_recursive(self, starting_vertex, visited=None):
         """
         Print each vertex in depth-first order
@@ -125,14 +124,33 @@ class Graph:
                     new_path.append(neighbor)
                     q.enqueue(new_path)
 
-
     def dfs(self, starting_vertex, destination_vertex):
         """
         Return a list containing a path from
         starting_vertex to destination_vertex in
         depth-first order.
         """
-        pass  # TODO
+        # TODO
+        s = Stack()
+        s.push([starting_vertex])
+        visited = set()
+
+        while s.size() > 0:
+            # grab list
+            path = s.pop()
+            # take last in path
+            current_vertex = path[-1]
+            if current_vertex not in visited:
+                if current_vertex == destination_vertex:
+                    return path
+                
+                visited.add(current_vertex)
+                neighbors = self.get_neighbors(current_vertex)
+                for neighbor in neighbors:
+                    # create a new path to append neighbor
+                    new_path = path.copy()
+                    new_path.append(neighbor)
+                    s.push(new_path)
 
     def dfs_recursive(self, starting_vertex):
         """

@@ -23,19 +23,42 @@ class Graph:
         # TODO
         if v1 in self.vertices and v2 in self.vertices:
             self.vertices[v1].add(v2)
+        else:
+            raise IndexError('That vertex does not exist.')
 
     def get_neighbors(self, vertex_id):
         """
         Get all neighbors (edges) of a vertex.
         """
-        pass  # TODO
+        # # TODO
+        return self.vertices[vertex_id]
 
     def bft(self, starting_vertex):
         """
         Print each vertex in breadth-first order
         beginning from starting_vertex.
         """
-        pass  # TODO
+        # Create an empty queue and enqueue the starting vertex ID
+        # Create an empty Set to store visited verticies
+        # While the queue is not empty...
+            # Dequeue the first vertex
+            # If that vertex has not been visited...
+                # Mark it as visited
+                # Then add all of its neighbors to the back of the queue
+        # TODO
+        print('==================== Breadth-First Traversal ====================')
+        q = Queue()
+        q.enqueue(starting_vertex)
+        visited = set()
+
+        while q:
+            current_vertex = q.dequeue()
+            if current_vertex not in visited:
+                print(current_vertex)
+                visited.add(current_vertex)
+                neighbors = self.get_neighbors(current_vertex)
+                for neighbor in neighbors:
+                    q.enqueue(neighbor)
 
     def dft(self, starting_vertex):
         """

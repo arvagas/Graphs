@@ -51,7 +51,7 @@ class Graph:
         q.enqueue(starting_vertex)
         visited = set()
 
-        while q:
+        while q.size() > 0:
             current_vertex = q.dequeue()
             if current_vertex not in visited:
                 print(current_vertex)
@@ -65,7 +65,21 @@ class Graph:
         Print each vertex in depth-first order
         beginning from starting_vertex.
         """
-        pass  # TODO
+        # TODO
+        print('==================== Depth-First Traversal ====================')
+        s = Stack()
+        s.push(starting_vertex)
+        visited = set()
+
+        while s.size() > 0:
+            current_vertex = s.pop()
+            if current_vertex not in visited:
+                print(current_vertex)
+                visited.add(current_vertex)
+                neighbors = self.get_neighbors(current_vertex)
+                for neighbor in neighbors:
+                    s.push(neighbor)
+
 
     def dft_recursive(self, starting_vertex):
         """

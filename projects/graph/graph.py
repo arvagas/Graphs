@@ -55,8 +55,7 @@ class Graph:
             if current_vertex not in visited:
                 print(current_vertex)
                 visited.add(current_vertex)
-                neighbors = self.get_neighbors(current_vertex)
-                for neighbor in neighbors:
+                for neighbor in self.get_neighbors(current_vertex):
                     q.enqueue(neighbor)
 
     def dft(self, starting_vertex):
@@ -74,8 +73,7 @@ class Graph:
             if current_vertex not in visited:
                 print(current_vertex)
                 visited.add(current_vertex)
-                neighbors = self.get_neighbors(current_vertex)
-                for neighbor in neighbors:
+                for neighbor in self.get_neighbors(current_vertex):
                     s.push(neighbor)
 
     def dft_recursive(self, starting_vertex, visited=None):
@@ -92,8 +90,7 @@ class Graph:
         if starting_vertex not in visited:
             print(starting_vertex)
             visited.add(starting_vertex)
-            neighbors = self.get_neighbors(starting_vertex)
-            for neighbor in neighbors:
+            for neighbor in self.get_neighbors(starting_vertex):
                 self.dft_recursive(neighbor, visited)
 
     def bfs(self, starting_vertex, destination_vertex):
@@ -117,10 +114,10 @@ class Graph:
                     return path
                 
                 visited.add(current_vertex)
-                neighbors = self.get_neighbors(current_vertex)
-                for neighbor in neighbors:
+                for neighbor in self.get_neighbors(current_vertex):
                     # create a new path to append neighbor
                     new_path = path.copy()
+                    # new_path = list(path)     <-- Also works to copy
                     new_path.append(neighbor)
                     q.enqueue(new_path)
 
@@ -145,10 +142,10 @@ class Graph:
                     return path
                 
                 visited.add(current_vertex)
-                neighbors = self.get_neighbors(current_vertex)
-                for neighbor in neighbors:
+                for neighbor in self.get_neighbors(current_vertex):
                     # create a new path to append neighbor
                     new_path = path.copy()
+                    # new_path = list(path)     <-- Also works to copy
                     new_path.append(neighbor)
                     s.push(new_path)
 
@@ -171,8 +168,7 @@ class Graph:
         if starting_vertex == destination_vertex:
             return path
 
-        neighbors = self.get_neighbors(starting_vertex)
-        for neighbor in neighbors:
+        for neighbor in self.get_neighbors(starting_vertex):
             if neighbor not in visited:
                 new_path = self.dfs_recursive(neighbor, destination_vertex, visited, path)
                 if new_path is not None:

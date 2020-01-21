@@ -46,7 +46,6 @@ class Graph:
                 # Mark it as visited
                 # Then add all of its neighbors to the back of the queue
         # TODO
-        print('==================== Breadth-First Traversal ====================')
         q = Queue()
         q.enqueue(starting_vertex)
         visited = set()
@@ -66,7 +65,6 @@ class Graph:
         beginning from starting_vertex.
         """
         # TODO
-        print('==================== Depth-First Traversal ====================')
         s = Stack()
         s.push(starting_vertex)
         visited = set()
@@ -81,14 +79,23 @@ class Graph:
                     s.push(neighbor)
 
 
-    def dft_recursive(self, starting_vertex):
+    def dft_recursive(self, starting_vertex, visited=None):
         """
         Print each vertex in depth-first order
         beginning from starting_vertex.
 
         This should be done using recursion.
         """
-        pass  # TODO
+        # TODO
+        if visited is None:
+            visited = set()
+        
+        if starting_vertex not in visited:
+            print(starting_vertex)
+            visited.add(starting_vertex)
+            neighbors = self.get_neighbors(starting_vertex)
+            for neighbor in neighbors:
+                self.dft_recursive(neighbor, visited)
 
     def bfs(self, starting_vertex, destination_vertex):
         """
@@ -158,6 +165,7 @@ if __name__ == '__main__':
         1, 2, 4, 3, 7, 6, 5
         1, 2, 4, 3, 7, 5, 6
     '''
+    print('==================== Breadth-First Traversal ====================')
     graph.bft(1)
 
     '''
@@ -167,13 +175,16 @@ if __name__ == '__main__':
         1, 2, 4, 7, 6, 3, 5
         1, 2, 4, 6, 3, 5, 7
     '''
+    print('==================== Depth-First Traversal ====================')
     graph.dft(1)
+    print('==================== Depth-First Traversal Recursive ====================')
     graph.dft_recursive(1)
 
     '''
     Valid BFS path:
         [1, 2, 4, 6]
     '''
+    print('==================== BFT Shortest ====================')
     print(graph.bfs(1, 6))
 
     '''
@@ -181,5 +192,7 @@ if __name__ == '__main__':
         [1, 2, 4, 6]
         [1, 2, 4, 7, 6]
     '''
+    print('==================== DFT Shortest ====================')
     print(graph.dfs(1, 6))
+    print('==================== DFT Shortest Recursive ====================')
     print(graph.dfs_recursive(1, 6))

@@ -101,7 +101,7 @@ class SocialGraph:
             if connected_user not in visited:
                 visited[connected_user] = path
 
-                for friend in self.friendships[user_id]:
+                for friend in self.friendships[connected_user]:
                     if friend not in visited:
                         new_path = list(path)
                         new_path.append(friend)
